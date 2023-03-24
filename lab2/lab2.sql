@@ -26,4 +26,4 @@ SELECT *
 FROM cities 
 WHERE region NOT IN ('E', 'W')
 ORDER BY population ASC
-LIMIT 20 OFFSET 20
+LIMIT 10 OFFSET 10
