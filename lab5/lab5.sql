@@ -33,9 +33,9 @@ GROUP BY region;
 --та кількість населення в цих містах не входить до діапазону 150 000 - 500 000
 SELECT name, population
 FROM cities
-WHERE population < 150000 OR population > 500000 AND region IN (
-    SELECT region
-    FROM cities
-    GROUP BY region
-    HAVING COUNT(*) <= 5
-);
+WHERE region IN (SELECT uuid
+                  FROM regions
+                  WHERE area_quantity <= 5)
+      AND name IN (SELECT name
+                    FROM cities
+                    WHERE population >= 150000 AND population <= 500000);
