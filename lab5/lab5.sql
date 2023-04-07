@@ -33,6 +33,6 @@ GROUP BY region;
 --та кількість населення в цих містах не входить до діапазону 150 000 - 500 000
 SELECT name, population
 FROM cities
-WHERE population >= 150000 AND population <= 500000 AND region IN (SELECT uuid
+WHERE population NOT BETWEEN 150000 AND 500000 AND region IN (SELECT uuid
                   FROM regions
                   WHERE area_quantity <= 5)
