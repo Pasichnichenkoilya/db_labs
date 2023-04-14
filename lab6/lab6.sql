@@ -8,3 +8,16 @@ INNER JOIN regions ON cities.region = regions.uuid AND cities.population > 35000
 SELECT cities.name
 FROM cities
 INNER JOIN regions ON cities.region = regions.uuid AND regions.name  = 'Nord';
+
+--Виводимо станції та колор гілки
+SELECT stations.name AS name, branches.color AS branch_color
+FROM stations
+INNER JOIN branches ON stations.branch_id
+
+--Виводимо всі станції які мають переход
+SELECT t.id, CONCAT(
+    (SELECT name FROM stations WHERE id = t.station_to_id),
+    ' - ',
+    (SELECT name FROM stations WHERE id = t.station_FROM_id))
+    AS result
+FROM transitions AS t
